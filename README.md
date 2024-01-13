@@ -1,164 +1,107 @@
-# AirBnB Clone - The Console
-The console is the first segment of the AirBnB project at Holberton School that will collectively cover fundamental concepts of higher level programming. The goal of AirBnB project is to eventually deploy our server a simple copy of the AirBnB Website(HBnB). A command interpreter is created in this segment to manage objects for the AirBnB(HBnB) website.
+# Airbnb Clone Team Project
 
-#### Functionalities of this command interpreter:
-* Create a new object (ex: a new User or a new Place)
-* Retrieve an object from a file, a database etc...
-* Do operations on objects (count, compute stats, etc...)
-* Update attributes of an object
-* Destroy an object
+## Background Context
 
-## Table of Content
-* [Environment](#environment)
-* [Installation](#installation)
-* [File Descriptions](#file-descriptions)
-* [Usage](#usage)
-* [Examples of use](#examples-of-use)
-* [Bugs](#bugs)
-* [Authors](#authors)
-* [License](#license)
+Welcome to the Airbnb Clone project! This project is the first step towards building a full web application that emulates the functionality of Airbnb. Before you begin, it's essential to understand the Airbnb concept. Please read the [Airbnb Concept Page](https://www.airbnb.com/about/about-us).
 
-## Environment
-This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3)
+## Overview:
+- [Background Context](#background-context)
+- [Team members](#team-members)
+- [Project Overview](#project-overview)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Acknowledgments](#acknowledgments)
 
-## Installation
-* Clone this repository: `git clone "https://github.com/alexaorrico/AirBnB_clone.git"`
-* Access AirBnb directory: `cd AirBnB_clone`
-* Run hbnb(interactively): `./console` and enter command
-* Run hbnb(non-interactively): `echo "<command>" | ./console.py`
+## Team members:
 
-## File Descriptions
-[console.py](console.py) - the console contains the entry point of the command interpreter. 
-List of commands this console current supports:
-* `EOF` - exits console 
-* `quit` - exits console
-* `<emptyline>` - overwrites default emptyline method and does nothing
-* `create` - Creates a new instance of`BaseModel`, saves it (to the JSON file) and prints the id
-* `destroy` - Deletes an instance based on the class name and id (save the change into the JSON file). 
-* `show` - Prints the string representation of an instance based on the class name and id.
-* `all` - Prints all string representation of all instances based or not on the class name. 
-* `update` - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). 
+        - Khaoula Nakkach and Aziz Nagwaka
 
-#### `models/` directory contains classes used for this project:
-[base_model.py](/models/base_model.py) - The BaseModel class from which future classes will be derived
-* `def __init__(self, *args, **kwargs)` - Initialization of the base model
-* `def __str__(self)` - String representation of the BaseModel class
-* `def save(self)` - Updates the attribute `updated_at` with the current datetime
-* `def to_dict(self)` - returns a dictionary containing all keys/values of the instance
+Cohort : 15 SE ALX program
 
-Classes inherited from Base Model:
-* [amenity.py](/models/amenity.py)
-* [city.py](/models/city.py)
-* [place.py](/models/place.py)
-* [review.py](/models/review.py)
-* [state.py](/models/state.py)
-* [user.py](/models/user.py)
+Project Duration:
 
-#### `/models/engine` directory contains File Storage class that handles JASON serialization and deserialization :
-[file_storage.py](/models/engine/file_storage.py) - serializes instances to a JSON file & deserializes back to instances
-* `def all(self)` - returns the dictionary __objects
-* `def new(self, obj)` - sets in __objects the obj with key <obj class name>.id
-* `def save(self)` - serializes __objects to the JSON file (path: __file_path)
-* ` def reload(self)` -  deserializes the JSON file to __objects
+Start date : 11 January 2024
+End date : 15 January 2024
 
-#### `/tests` directory contains all unit test cases for this project:
-[/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
-TestBaseModelDocs class:
-* `def setUpClass(cls)`- Set up for the doc tests
-* `def test_pep8_conformance_base_model(self)` - Test that models/base_model.py conforms to PEP8
-* `def test_pep8_conformance_test_base_model(self)` - Test that tests/test_models/test_base_model.py conforms to PEP8
-* `def test_bm_module_docstring(self)` - Test for the base_model.py module docstring
-* `def test_bm_class_docstring(self)` - Test for the BaseModel class docstring
-* `def test_bm_func_docstrings(self)` - Test for the presence of docstrings in BaseModel methods
+### Project Overview
 
-TestBaseModel class:
-* `def test_is_base_model(self)` - Test that the instatiation of a BaseModel works
-* `def test_created_at_instantiation(self)` - Test created_at is a pub. instance attribute of type datetime
-* `def test_updated_at_instantiation(self)` - Test updated_at is a pub. instance attribute of type datetime
-* `def test_diff_datetime_objs(self)` - Test that two BaseModel instances have different datetime objects
+The primary objective of this project is to create a command interpreter that manages Airbnb objects. This command interpreter will serve as the foundation for building the complete Airbnb clone. The work you do in this initial step will be crucial because it forms the basis for all subsequent projects, including HTML/CSS templating, database storage, API development, and front-end integration.
 
-[/test_models/test_amenity.py](/tests/test_models/test_amenity.py) - Contains the TestAmenityDocs class:
-* `def setUpClass(cls)` - Set up for the doc tests
-* `def test_pep8_conformance_amenity(self)` - Test that models/amenity.py conforms to PEP8
-* `def test_pep8_conformance_test_amenity(self)` - Test that tests/test_models/test_amenity.py conforms to PEP8
-* `def test_amenity_module_docstring(self)` - Test for the amenity.py module docstring
-* `def test_amenity_class_docstring(self)` - Test for the Amenity class docstring
+In this project, you will:
 
-[/test_models/test_city.py](/tests/test_models/test_city.py) - Contains the TestCityDocs class:
-* `def setUpClass(cls)` - Set up for the doc tests
-* `def test_pep8_conformance_city(self)` - Test that models/city.py conforms to PEP8
-* `def test_pep8_conformance_test_city(self)` - Test that tests/test_models/test_city.py conforms to PEP8
-* `def test_city_module_docstring(self)` - Test for the city.py module docstring
-* `def test_city_class_docstring(self)` - Test for the City class docstring
+1. Implement a parent class called `BaseModel` responsible for initializing, serializing, and deserializing future object instances.
+2. Create a simple serialization/deserialization flow: Instance <-> Dictionary <-> JSON String <-> File.
+3. Define classes for various Airbnb objects such as User, State, City, Place, etc., all of which will inherit from `BaseModel`.
+4. Develop the initial abstracted storage engine for the project, known as File storage.
+5. Write unit tests to validate all classes and the storage engine.
 
-[/test_models/test_file_storage.py](/tests/test_models/test_file_storage.py) - Contains the TestFileStorageDocs class:
-* `def setUpClass(cls)` - Set up for the doc tests
-* `def test_pep8_conformance_file_storage(self)` - Test that models/file_storage.py conforms to PEP8
-* `def test_pep8_conformance_test_file_storage(self)` - Test that tests/test_models/test_file_storage.py conforms to PEP8
-* `def test_file_storage_module_docstring(self)` - Test for the file_storage.py module docstring
-* `def test_file_storage_class_docstring(self)` - Test for the FileStorage class docstring
+## What's a Command Interpreter?
 
-[/test_models/test_place.py](/tests/test_models/test_place.py) - Contains the TestPlaceDoc class:
-* `def setUpClass(cls)` - Set up for the doc tests
-* `def test_pep8_conformance_place(self)` - Test that models/place.py conforms to PEP8.
-* `def test_pep8_conformance_test_place(self)` - Test that tests/test_models/test_place.py conforms to PEP8.
-* `def test_place_module_docstring(self)` - Test for the place.py module docstring
-* `def test_place_class_docstring(self)` - Test for the Place class docstring
+Think of the Command Interpreter as a user-friendly interface to interact with your Airbnb objects. It's similar to a shell, but it's tailored to the specific needs of your project. With the Command Interpreter, you can perform various operations on Airbnb objects, including:
 
-[/test_models/test_review.py](/tests/test_models/test_review.py) - Contains the TestReviewDocs class:
-* `def setUpClass(cls)` - Set up for the doc tests
-* `def test_pep8_conformance_review(self)` - Test that models/review.py conforms to PEP8
-* `def test_pep8_conformance_test_review(self)` - Test that tests/test_models/test_review.py conforms to PEP8
-* `def test_review_module_docstring(self)` - Test for the review.py module docstring
-* `def test_review_class_docstring(self)` - Test for the Review class docstring
+- Creating new objects (e.g., User or Place).
+- Retrieving objects from files, databases, or other sources.
+- Performing operations on objects, such as counting and computing statistics.
+- Updating attributes of an object.
+- Deleting objects when they are no longer needed.
 
-[/test_models/state.py](/tests/test_models/test_state.py) - Contains the TestStateDocs class:
-* `def setUpClass(cls)` - Set up for the doc tests
-* `def test_pep8_conformance_state(self)` - Test that models/state.py conforms to PEP8
-* `def test_pep8_conformance_test_state(self)` - Test that tests/test_models/test_state.py conforms to PEP8
-* `def test_state_module_docstring(self)` - Test for the state.py module docstring
-* `def test_state_class_docstring(self)` - Test for the State class docstring
+This Command Interpreter will serve as a powerful tool to manage and manipulate Airbnb data within your application.
 
-[/test_models/user.py](/tests/test_models/test_user.py) - Contains the TestUserDocs class:
-* `def setUpClass(cls)` - Set up for the doc tests
-* `def test_pep8_conformance_user(self)` - Test that models/user.py conforms to PEP8
-* `def test_pep8_conformance_test_user(self)` - Test that tests/test_models/test_user.py conforms to PEP8
-* `def test_user_module_docstring(self)` - Test for the user.py module docstring
-* `def test_user_class_docstring(self)` - Test for the User class docstring
+## Getting Started
 
+To get started with the Airbnb Clone project, follow these steps:
 
-## Examples of use
-```
-vagrantAirBnB_clone$./console.py
-(hbnb) help
+1. Clone the project repository from GitHub:
 
-Documented commands (type help <topic>):
-========================================
-EOF  all  create  destroy  help  quit  show  update
+   ```
+   git clone https://github.com/yourusername/AirBnB_clone.git
+   ```
 
-(hbnb) all MyModel
-** class doesn't exist **
-(hbnb) create BaseModel
-7da56403-cc45-4f1c-ad32-bfafeb2bb050
-(hbnb) all BaseModel
-[[BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'created_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}]
-(hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
-[BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'created_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}
-(hbnb) destroy BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
-(hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
-** no instance found **
-(hbnb) quit
-```
+2. Navigate to the project directory:
 
-## Bugs
-No known bugs at this time. 
+   ```
+   cd AirBnB_clone
+   ```
 
-## Authors
-Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
-Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)  
-Jhoan Zamora - [Github](https://github.com/jzamora5) / [Twitter](https://twitter.com/JhoanZamora10)  
-David Ovalle - [Github](https://github.com/Nukemenonai) / [Twitter](https://twitter.com/disartDave)
+3. Begin working on your command interpreter and Airbnb object classes.
 
-Second part of Airbnb: Joann Vuong
-## License
-Public Domain. No copy write protection. 
+## Usage:
+
+To use the command interpreter and manage your Airbnb objects, follow these steps:
+
+1. Run the command interpreter:
+
+   ```
+   ./console.py
+   ```
+
+2. You will be presented with a prompt where you can enter commands to create, retrieve, update, and delete Airbnb objects.
+
+3. Use the command syntax and structure defined in your project's documentation to interact with the command interpreter effectively.
+
+## Contributing:
+
+If you would like to contribute to the Airbnb Clone project, please follow these guidelines:
+
+1. Fork the project on GitHub.
+
+2. Create a new branch for your contributions:
+
+   ```
+   git checkout -b feature/your-feature-name
+   ```
+
+3. Make your changes and ensure that they adhere to the project's coding standards and conventions.
+
+4. Write tests to validate your changes.
+
+5. Commit your changes with clear and concise commit messages.
+
+6. Push your changes to your fork on GitHub.
+
+7. Create a pull request to merge your changes into the main project repository.
+
+## Acknowledgments:
+
+We would like to express our gratitude to the Airbnb team for their innovative concept and inspiration for this project. Thank you for the opportunity to learn and build an Airbnb Clone
